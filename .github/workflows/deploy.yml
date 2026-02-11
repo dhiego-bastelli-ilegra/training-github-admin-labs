@@ -1,0 +1,14 @@
+name: Deploy to Production
+on:
+  workflow_dispatch: # Permite rodar manualmente clicando no botão
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: Production # Aqui é a mágica!
+    steps:
+      - name: Simulando Deploy
+        run: |
+          echo "Iniciando deploy em Produção..."
+          sleep 5
+          echo "Deploy realizado com sucesso!"
