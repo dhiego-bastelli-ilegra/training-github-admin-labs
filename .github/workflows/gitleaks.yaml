@@ -8,5 +8,9 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: gitleaks/gitleaks-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Isso garante que o Gitleaks tenha acesso a todo o histórico de commits
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
