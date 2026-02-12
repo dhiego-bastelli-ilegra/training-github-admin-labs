@@ -7,6 +7,11 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read      # Permite ler o código para escanear
+      pull-requests: write # Permite que o Gitleaks escreva o comentário de alerta no PR
+      security-events: write # Necessário se você quiser que os alertas apareçam na aba "Security"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -14,3 +19,5 @@ jobs:
           fetch-depth: 0 # Isso garante que o Gitleaks tenha acesso a todo o histórico de commits
       - name: Gitleaks
         uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
